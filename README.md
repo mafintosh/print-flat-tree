@@ -6,6 +6,8 @@ Converts a [flat tree](https://github.com/mafintosh/flat-tree) to a string
 npm install print-flat-tree
 ```
 
+[![build status](http://img.shields.io/travis/mafintosh/print-flat-tree.svg?style=flat)](http://travis-ci.org/mafintosh/print-flat-tree)
+
 ## Usage
 
 ``` js
