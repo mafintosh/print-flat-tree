@@ -6,8 +6,13 @@
   "bin": {
     "print-flat-tree": "./bin.js"
   },
+  "scripts": {
+    "test": "standard"
+  },
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "standard": "^5.2.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mafintosh/print-flat-tree.git"

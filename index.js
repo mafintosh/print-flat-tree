@@ -5,7 +5,10 @@ module.exports = print
 
 function print (tree, opts) {
   var list = []
-  for (var i = 0; i < tree.length; i++) list[tree[i]] = true
+  var i
+  var j
+
+  for (i = 0; i < tree.length; i++) list[tree[i]] = true
   if (!opts) opts = {}
 
   var width = list.length.toString().length + 1
@@ -22,14 +25,14 @@ function print (tree, opts) {
   var turnDown = opts.turnDown || '┐'
   var turnUp = opts.turnUp || '┘'
 
-  for (var i = 0; i < list.length; i++) max = Math.max(max, flat.depth(i) + 1)
+  for (i = 0; i < list.length; i++) max = Math.max(max, flat.depth(i) + 1)
 
-  for (var i = 0; i < list.length; i++) {
+  for (i = 0; i < list.length; i++) {
     matrix[i] = []
-    for (var j = 0; j < max; j++) matrix[i][j] = blank
+    for (j = 0; j < max; j++) matrix[i][j] = blank
   }
 
-  for (var i = 0; i < list.length; i++) {
+  for (i = 0; i < list.length; i++) {
     if (!list[i]) continue
     var depth = flat.depth(i)
     var children = flat.children(i)
@@ -42,18 +45,18 @@ function print (tree, opts) {
     }
   }
 
-  for (var i = 0; i < list.length; i += 2) {
+  for (i = 0; i < list.length; i += 2) {
     if (list[i] && roots.indexOf(i) === -1) matrix[i][0] = yellow(matrix[i][0])
   }
 
-  for (var i = 0; i < roots.length; i++) {
+  for (i = 0; i < roots.length; i++) {
     var r = roots[i]
     var d = flat.depth(roots[i])
     if (list[roots[i]]) matrix[r][d] = red(matrix[r][d])
   }
 
   var str = ''
-  for (var i = 0; i < matrix.length; i++) {
+  for (i = 0; i < matrix.length; i++) {
     str += matrix[i].join('') + '\n'
   }
 
@@ -79,4 +82,8 @@ function print (tree, opts) {
     while (str.length < width) str = val + str
     return str
   }
+}
+
+function echo (str) {
+  return str
 }
