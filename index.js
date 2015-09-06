@@ -8,7 +8,7 @@ function print (tree, opts) {
   var i
   var j
 
-  for (i = 0; i < tree.length; i++) list[tree[i]] = true
+  for (i = 0; i < tree.length; i++) list[Math.abs(tree[i])] = tree[i] >= 0
   if (!opts) opts = {}
 
   var width = list.length.toString().length + 1
