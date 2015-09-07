@@ -12,7 +12,7 @@ function print (tree, opts) {
   if (!opts) opts = {}
 
   var width = list.length.toString().length + 1
-  var roots = flat.fullRoots(list.length + list.length % 2)
+  var roots = flat.fullRoots(list.length - list.length % 2)
   var blank = Array(width + 1).join(' ')
   var grey = opts.color === false ? echo : chalk.grey
   var yellow = opts.color === false ? echo : chalk.yellow
