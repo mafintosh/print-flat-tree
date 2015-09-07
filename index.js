@@ -11,12 +11,14 @@ function print (tree, opts) {
   for (i = 0; i < tree.length; i++) list[Math.abs(tree[i])] = tree[i] >= 0
   if (!opts) opts = {}
 
+  var lastBlock = list.length - list.length % 2
   var width = list.length.toString().length + 1
-  var roots = flat.fullRoots(list.length - list.length % 2)
+  var roots = flat.fullRoots(lastBlock)
   var blank = Array(width + 1).join(' ')
   var grey = opts.color === false ? echo : chalk.grey
   var yellow = opts.color === false ? echo : chalk.yellow
-  var red = opts.color === false ? echo : chalk.red
+  var cyan = opts.color === false ? echo : chalk.cyan
+  var green = opts.color === false ? echo : chalk.green
   var matrix = []
   var max = 0
 
@@ -46,13 +48,14 @@ function print (tree, opts) {
   }
 
   for (i = 0; i < list.length; i += 2) {
-    if (list[i] && roots.indexOf(i) === -1) matrix[i][0] = yellow(matrix[i][0])
+    var col = i === lastBlock ? green : yellow
+    if (list[i] && roots.indexOf(i) === -1) matrix[i][0] = col(matrix[i][0])
   }
 
   for (i = 0; i < roots.length; i++) {
     var r = roots[i]
     var d = flat.depth(roots[i])
-    if (list[roots[i]]) matrix[r][d] = red(matrix[r][d])
+    if (list[roots[i]]) matrix[r][d] = cyan(matrix[r][d])
   }
 
   var str = ''
