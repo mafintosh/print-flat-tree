@@ -3,6 +3,14 @@ var chalk = require('chalk')
 
 module.exports = print
 
+function color (fn, name) {
+  if (fn === false) return echo
+  if (typeof fn !== 'function') return chalk[name]
+  return function (str) {
+    return fn(str, name)
+  }
+}
+
 function print (tree, opts) {
   var list = []
   var i
@@ -15,10 +23,10 @@ function print (tree, opts) {
   var width = list.length.toString().length + 1
   var roots = flat.fullRoots(lastBlock)
   var blank = Array(width + 1).join(' ')
-  var grey = opts.color === false ? echo : chalk.grey
-  var yellow = opts.color === false ? echo : chalk.yellow
-  var cyan = opts.color === false ? echo : chalk.cyan
-  var green = opts.color === false ? echo : chalk.green
+  var grey = color(opts.color, 'grey')
+  var yellow = color(opts.color, 'yellow')
+  var cyan = color(opts.color, 'cyan')
+  var green = color(opts.color, 'green')
   var matrix = []
   var max = 0
 
