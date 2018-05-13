@@ -1,6 +1,6 @@
 {
   "name": "print-flat-tree",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Converts a flat tree to a string",
   "main": "index.js",
   "bin": {
